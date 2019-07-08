@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "description": "Frontend common components library by MrDigger",
   "author": "MrDigger <mrdigger@mail.ru> (http://sad-systems.ru)",
-  "main": "dist/index.js",
   "license": "ISC",
   "keywords": [
     "react",
     "scroll",
     "animation",
     "effects"
+  ],
+  "main": "src/index.js",
+  "files": [
+    "src"
   ],
   "dependencies": {
     "react": "^16.5.2",

@@ -22,3 +22,7 @@
 # Environment:
 
 .env.*
+
+# Misc:
+
+/demo

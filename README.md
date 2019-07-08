@@ -1,22 +1,13 @@
-# Project name
+# Frigate
 
 > Сменить язык: [![Русский](docs/assets/images/ru.gif)](README.ru.md) [![English](docs/assets/images/en.gif)](README.md)
 
 ###### Author: MrDigger <mrdigger@mail.ru>
 ###### © SAD-Systems [http://sad-systems.ru](), 2019
-
-## Used technologies
-
-  * [react.js](https://reactjs.org)
-  * [apollo graphql](https://www.apollographql.com)
-  * [redux](https://react-redux.js.org)
-  * [material-ui](https://material-ui.com)
-  * [PHP 7.1](https://www.php.net)
-  * [graphql-php](https://webonyx.github.io/graphql-php/)
-    
+   
 ## Description
 
-### Notes
+Frontend components library.
 
 ## Usage
 
