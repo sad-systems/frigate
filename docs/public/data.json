@@ -1,0 +1,297 @@
+{
+    "project": {
+        "name": "Frigate",
+        "description": "Frontend components library",
+        "version": "0.1.0",
+        "url": "http://sad-systems.ru/",
+        "logo": "assets/logo.png",
+        "paths": [
+            "./src"
+        ]
+    },
+    "files": {
+        "src\\core\\scroll\\base-effects.js": {
+            "name": "src\\core\\scroll\\base-effects.js",
+            "modules": {},
+            "classes": {
+                "core.scroll.BaseEffects": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "core.scroll": 1
+            }
+        },
+        "src\\core\\scroll\\core.js": {
+            "name": "src\\core\\scroll\\core.js",
+            "modules": {
+                "Core": 1
+            },
+            "classes": {
+                "core.scroll.Core": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "core.scroll": 1
+            }
+        },
+        "src\\react\\ScrollAnimator.jsx": {
+            "name": "src\\react\\ScrollAnimator.jsx",
+            "modules": {
+                "React": 1
+            },
+            "classes": {
+                "react.ScrollAnimator": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "react": 1
+            }
+        },
+        "webpack.common.js": {
+            "name": "webpack.common.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "Core": {
+            "name": "Core",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "core.scroll.BaseEffects": 1,
+                "core.scroll.Core": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "core.scroll": 1
+            },
+            "tag": "main",
+            "file": "src\\core\\scroll\\core.js",
+            "line": 10,
+            "description": "The core module.\n\nProvides the framework independent functions and classes.",
+            "itemtype": "main"
+        },
+        "React": {
+            "name": "React",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "react.ScrollAnimator": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "react": 1
+            },
+            "tag": "module",
+            "file": "src\\react\\ScrollAnimator.jsx",
+            "line": 13,
+            "description": "The react module.\n\nProvides the components for React framework."
+        }
+    },
+    "classes": {
+        "core.scroll.BaseEffects": {
+            "name": "core.scroll.BaseEffects",
+            "shortname": "core.scroll.BaseEffects",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Core",
+            "namespace": "core.scroll",
+            "file": "src\\core\\scroll\\base-effects.js",
+            "line": 1,
+            "description": "Functions provide basic animation effects."
+        },
+        "core.scroll.Core": {
+            "name": "core.scroll.Core",
+            "shortname": "core.scroll.Core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Core",
+            "namespace": "core.scroll",
+            "file": "src\\core\\scroll\\core.js",
+            "line": 10,
+            "description": "Core functions to create animations on scroll."
+        },
+        "react.ScrollAnimator": {
+            "name": "react.ScrollAnimator",
+            "shortname": "react.ScrollAnimator",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "React",
+            "namespace": "react",
+            "file": "src\\react\\ScrollAnimator.jsx",
+            "line": 13,
+            "description": "The wrapper component to create an animation on scroll.\n\nThe component passes all attributes to the wrapper div,\nexcept its own props.\n\nUsage:\n```\n     <ScrollAnimator className=\"my-class\" enable=\"true\" effect=\"slide\">\n        ...\n     </ScrollAnimator>\n```\nit creates the next DOM element:\n```\n     <div class=\"my-class\">\n         ...\n     </div>\n```\nthat will apply defined \"slide\" effect if page is scrolled."
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "src\\core\\scroll\\base-effects.js",
+            "line": 8,
+            "description": "Simple zoom effect",
+            "itemtype": "method",
+            "name": "effectSimpleZoom",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "HTML element",
+                    "type": "Object"
+                },
+                {
+                    "name": "value",
+                    "description": "Value in range [0 - 1]",
+                    "type": "Number"
+                },
+                {
+                    "name": "direction",
+                    "description": "Value of the moving direction",
+                    "type": "Number"
+                }
+            ],
+            "class": "core.scroll.BaseEffects",
+            "namespace": "core.scroll"
+        },
+        {
+            "file": "src\\core\\scroll\\base-effects.js",
+            "line": 24,
+            "description": "Simple slide effect",
+            "itemtype": "method",
+            "name": "effectSimpleSlide",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "HTML element",
+                    "type": "Object"
+                },
+                {
+                    "name": "value",
+                    "description": "Value in range [0 - 1]",
+                    "type": "Number"
+                },
+                {
+                    "name": "direction",
+                    "description": "Value of the moving direction",
+                    "type": "Number"
+                }
+            ],
+            "class": "core.scroll.BaseEffects",
+            "namespace": "core.scroll"
+        },
+        {
+            "file": "src\\core\\scroll\\base-effects.js",
+            "line": 40,
+            "description": "Effect function factory",
+            "itemtype": "method",
+            "name": "getEffect",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Base animation effect name"
+                }
+            ],
+            "return": {
+                "description": "The effect function",
+                "type": "EffectFunction|effectSimpleZoom"
+            },
+            "class": "core.scroll.BaseEffects",
+            "namespace": "core.scroll"
+        },
+        {
+            "file": "src\\core\\scroll\\core.js",
+            "line": 17,
+            "description": "The function to calculate the element's center current position in the window\nagainst the center of the window\nand returns the offset value (in percentages) and moving direction (up/down).",
+            "itemtype": "method",
+            "name": "getElementCenterOffsetAgainstWindowCenter",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "The DOM element is moving inside the window.",
+                    "type": "DOMElement"
+                }
+            ],
+            "return": {
+                "description": "The object of structure: { value: number, direction: number }\n```\n`value`     The element's center offset from the center of the window (in percentages).\n            = range of: [0 .. 1];\n             1 - the element's center is in the middle of the window\n             0 - the element's center is out of the window (upper or lower)\n\n`direction` The element's moving direction (up/down from the window center)\n            = set of: 0 | 1 | -1\n             0 - the element is out of the window,\n             1 - the element is moving up from center,\n            -1 - the element is moving down from center\n```",
+                "type": "Object"
+            },
+            "class": "core.scroll.Core",
+            "module": "Core",
+            "namespace": "core.scroll"
+        },
+        {
+            "file": "src\\react\\ScrollAnimator.jsx",
+            "line": 43,
+            "description": "Enable/disable the effect on scroll.",
+            "itemtype": "property",
+            "name": "enable",
+            "type": "boolean",
+            "default": "false",
+            "class": "react.ScrollAnimator",
+            "module": "React",
+            "namespace": "react"
+        },
+        {
+            "file": "src\\react\\ScrollAnimator.jsx",
+            "line": 51,
+            "description": "The base effect name.\nPossible values: \"zoom\", \"slide\" and all witch are defined in `BaseEffects`.",
+            "see": [
+                "BaseEffects"
+            ],
+            "itemtype": "property",
+            "name": "effect",
+            "type": "string",
+            "default": "\"zoom\"",
+            "class": "react.ScrollAnimator",
+            "module": "React",
+            "namespace": "react"
+        },
+        {
+            "file": "src\\react\\ScrollAnimator.jsx",
+            "line": 61,
+            "description": "The custom effect function instead of the base effect.",
+            "itemtype": "property",
+            "name": "effectFunc",
+            "type": "function(element, value, direction)",
+            "default": "null",
+            "class": "react.ScrollAnimator",
+            "module": "React",
+            "namespace": "react"
+        },
+        {
+            "file": "webpack.common.js",
+            "line": 7,
+            "description": "Function to return webpack.config",
+            "params": [
+                {
+                    "name": "props",
+                    "description": "An object of {\n                         entryName:   \"name-of-the-bundle\",\n                         entryPoint:  \"./src/index.js\",\n                         indexPage:   \"./src/index.html\",\n                         contentBase: \"./dist\", // <--- Build dir will be cleared\n                      }",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "webpack.config",
+                "type": "Object"
+            },
+            "class": "",
+            "module": "React",
+            "namespace": "react"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nFunction to return webpack.config",
+            "line": " webpack.common.js:7"
+        }
+    ]
+}

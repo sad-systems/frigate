@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\core\scroll\core.js - Frigate</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="..\assets\logo.png" title="Frigate">Frigate <small>0.1.0</small></h1>
+        </div>
+        <!--div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0</em>
+        </div-->
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/core.scroll.BaseEffects.html">core.scroll.BaseEffects</a></li>
+                                <li><a href="../classes/core.scroll.Core.html">core.scroll.Core</a></li>
+                                <li><a href="../classes/react.ScrollAnimator.html">react.ScrollAnimator</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Core.html">Core</a></li>
+                                <li><a href="../modules/React.html">React</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: src\core\scroll\core.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * The core module.
+ *
+ * Provides the framework independent functions and classes.
+ *
+ * @module Core
+ * @main Core
+ */
+
+/**
+ * Core functions to create animations on scroll.
+ *
+ * @namespace core.scroll
+ * @class     Core
+ */
+
+/**
+ * The function to calculate the element&#x27;s center current position in the window
+ * against the center of the window
+ * and returns the offset value (in percentages) and moving direction (up/down).
+ *
+ * @method getElementCenterOffsetAgainstWindowCenter
+ *
+ * @param {DOMElement} element The DOM element is moving inside the window.
+ *
+ * @return {Object} The object of structure: { value: number, direction: number }
+ * &#x60;&#x60;&#x60;
+ * &#x60;value&#x60;     The element&#x27;s center offset from the center of the window (in percentages).
+ *             = range of: [0 .. 1];
+ *              1 - the element&#x27;s center is in the middle of the window
+ *              0 - the element&#x27;s center is out of the window (upper or lower)
+ *
+ * &#x60;direction&#x60; The element&#x27;s moving direction (up/down from the window center)
+ *             = set of: 0 | 1 | -1
+ *              0 - the element is out of the window,
+ *              1 - the element is moving up from center,
+ *             -1 - the element is moving down from center
+ * &#x60;&#x60;&#x60;
+ */
+export const getElementCenterOffsetAgainstWindowCenter = (element) =&gt; {
+  let value     = 0;
+  let direction = 0;
+
+  // const scrollTop   = window.pageYOffset || document.documentElement.scrollTop;
+  // event.target.body.scrollTop; //event.srcElement.body.scrollTop;
+  // const elOffsetTop = element.offsetTop;
+  const windowHeight      = document.documentElement.clientHeight;
+  const elHeight          = element.offsetHeight;
+  const elWindowOffsetTop = element.getBoundingClientRect().top;
+
+  if (elWindowOffsetTop &lt;= windowHeight &amp;&amp; elWindowOffsetTop &gt;= -elHeight) {
+    const percent = (windowHeight - elWindowOffsetTop) / (windowHeight / 2 + elHeight / 2);
+    direction = percent &lt;= 1 ? 1 : -1;
+    value     = percent &lt;= 1 ? percent : 2 - percent;
+  }
+
+  return { value, direction };
+};
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
