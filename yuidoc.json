@@ -1,0 +1,13 @@
+{
+    "name": "Frigate",
+    "description": "Frontend components library",
+    "version": "0.1.0",
+    "url": "http://sad-systems.ru/",
+    "logo": "assets/logo.png",
+    "paths": ["./src"],
+    "options": {
+        "themedir":  "docs/assets/yuidoc_themes/sad-systems",
+        "outdir":    "docs/public",
+        "extension": ".ts,.js,.jsx,.tsx"
+    }
+}
