@@ -3,8 +3,7 @@
  *
  * Provides the components for React framework.
  *
- * @module Main
- * @submodule React
+ * @module React
  */
 import React from "react";
 
@@ -23,6 +22,13 @@ import { getElementCenterOffsetAgainstWindowCenter } from "../core/scroll/core";
  *         ...
  *      </ScrollAnimator>
  * ```
+ * it creates the next DOM element:
+ * ```
+ *      <div class="my-class">
+ *          ...
+ *      </div>
+ * ```
+ * that will apply defined "slide" effect if page is scrolled.
  *
  * @namespace react
  * @class     ScrollAnimator
@@ -35,7 +41,7 @@ export default class ScrollAnimator extends React.Component {
 
         const {
           /**
-           * Enable/disable the effect on scroll
+           * Enable/disable the effect on scroll.
            *
            * @property enable
            * @type boolean
@@ -43,7 +49,9 @@ export default class ScrollAnimator extends React.Component {
            */
           enable     = false,
           /**
-           * The base effect name
+           * The base effect name.
+           * Possible values: "zoom", "slide" and all witch are defined in `BaseEffects`.
+           * @see BaseEffects
            *
            * @property effect
            * @type string
@@ -51,7 +59,7 @@ export default class ScrollAnimator extends React.Component {
            */
           effect     = "zoom",
           /**
-           * The custom effect function
+           * The custom effect function instead of the base effect.
            *
            * @property  effectFunc
            * @type function(element, value, direction)

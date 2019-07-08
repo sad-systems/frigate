@@ -1,10 +1,5 @@
 /**
- * @module Main
- * @submodule Core
- */
-
-/**
- * Base animation effects.
+ * Functions provide basic animation effects.
  *
  * @namespace core.scroll
  * @class     BaseEffects

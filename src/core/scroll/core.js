@@ -3,8 +3,8 @@
  *
  * Provides the framework independent functions and classes.
  *
- * @module Main
- * @submodule Core
+ * @module Core
+ * @main Core
  */
 
 /**
