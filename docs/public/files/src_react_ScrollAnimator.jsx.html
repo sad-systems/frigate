@@ -91,10 +91,11 @@
  *
  * @module React
  */
-import React from &quot;react&quot;;
+import React from &#x27;react&#x27;;
+import PropTypes from &#x27;prop-types&#x27;;
 
-import { getEffect } from &quot;../core/scroll/base-effects&quot;;
-import { getElementCenterOffsetAgainstWindowCenter } from &quot;../core/scroll/core&quot;;
+import { getEffect } from &#x27;../core/scroll/base-effects&#x27;;
+import { getElementCenterOffsetAgainstWindowCenter } from &#x27;../core/scroll/core&#x27;;
 
 /**
  * The wrapper component to create an animation on scroll.
@@ -119,87 +120,100 @@ import { getElementCenterOffsetAgainstWindowCenter } from &quot;../core/scroll/c
  * @namespace react
  * @class     ScrollAnimator
  */
-export default class ScrollAnimator extends React.Component {
+class ScrollAnimator extends React.Component {
+  constructor(props) {
+    super(props);
+    const {
+      enable,
+      effect,
+      effectFunc,
+      children,
+      ...elementProps
+    } = props;
 
-    constructor(props)
-    {
-        super(props);
+    this.enable       = enable;
+    this.effectFunc   = effectFunc || getEffect(effect);
+    this.elementProps = elementProps;
+    this.children     = children;
+    this.blockRef     = React.createRef();
+    this.handleScroll = () =&gt; this.onScroll();
+  }
 
-        const {
-          /**
-           * Enable/disable the effect on scroll.
-           *
-           * @property enable
-           * @type boolean
-           * @default false
-           */
-          enable     = false,
-          /**
-           * The base effect name.
-           * Possible values: &quot;zoom&quot;, &quot;slide&quot; and all witch are defined in &#x60;BaseEffects&#x60;.
-           * @see BaseEffects
-           *
-           * @property effect
-           * @type string
-           * @default  &quot;zoom&quot;
-           */
-          effect     = &quot;zoom&quot;,
-          /**
-           * The custom effect function instead of the base effect.
-           *
-           * @property  effectFunc
-           * @type function(element, value, direction)
-           * @default null
-           */
-          effectFunc = null,
+  componentDidMount() {
+    if (!this.enable) return;
+    window.addEventListener(&#x27;scroll&#x27;, this.handleScroll);
+    window.addEventListener(&#x27;resize&#x27;, this.handleScroll);
+    this.handleScroll();
+  }
 
-          ...elementProps
-        } = props;
+  componentDidUpdate() {
+    this.handleScroll();
+  }
 
-        this.enable       = enable;
-        this.effectFunc   = effectFunc || getEffect(effect);
-        this.elementProps = elementProps;
-        this.blockRef     = React.createRef();
-    }
+  componentWillUnmount() {
+    if (!this.enable) return;
+    window.removeEventListener(&#x27;scroll&#x27;, this.handleScroll);
+    window.removeEventListener(&#x27;resize&#x27;, this.handleScroll);
+  }
 
-    componentDidMount()
-    {
-        if (!this.enable) return;
-        window.addEventListener(&#x27;scroll&#x27;, this.handleScroll);
-        window.addEventListener(&#x27;resize&#x27;, this.handleScroll);
-        this.handleScroll();
-    }
+  onScroll() {
+    const el = this.blockRef.current;
+    if (!this.enable || !el) return;
 
-    componentWillUnmount()
-    {
-        if (!this.enable) return;
-        window.removeEventListener(&#x27;scroll&#x27;, this.handleScroll);
-        window.removeEventListener(&#x27;resize&#x27;, this.handleScroll);
-    }
+    const { value, direction } = getElementCenterOffsetAgainstWindowCenter(el);
+    this.effectFunc(el, value, direction);
+  }
 
-    componentDidUpdate()
-    {
-        this.handleScroll();
-    }
-
-    handleScroll = event =&gt;
-    {
-        const el = this.blockRef.current;
-        if (!this.enable || !el) return;
-
-        const { value, direction } = getElementCenterOffsetAgainstWindowCenter(el);
-        this.effectFunc(el, value, direction);
-    };
-
-    render() {
-        return (
-            &lt;div ref={ this.blockRef } { ...this.elementProps }&gt;
-                { this.props.children }
-            &lt;/div&gt;
-        );
-    }
-
+  render() {
+    return (
+      &lt;div ref={this.blockRef} {...this.elementProps}&gt;
+        { this.children }
+      &lt;/div&gt;
+    );
+  }
 }
+
+ScrollAnimator.propTypes = {
+  /**
+   * Enable/disable the effect on scroll.
+   *
+   * @property enable
+   * @type boolean
+   * @default false
+   */
+  enable: PropTypes.bool,
+  /**
+   * The base effect name.
+   * Possible values: &quot;zoom&quot;, &quot;slide&quot; and all witch are defined in &#x60;BaseEffects&#x60;.
+   * @see BaseEffects
+   *
+   * @property effect
+   * @type string
+   * @default  &#x27;zoom&#x27;
+   */
+  effect: PropTypes.string,
+  /**
+   * The custom effect function instead of the base effect.
+   *
+   * @property  effectFunc
+   * @type function(element, value, direction)
+   * @default null
+   */
+  effectFunc: PropTypes.func,
+  /**
+   * The children
+   */
+  children: PropTypes.node,
+};
+
+ScrollAnimator.defaultProps = {
+  enable:     false,
+  effect:     &#x27;zoom&#x27;,
+  effectFunc: null,
+  children:   null,
+};
+
+export default ScrollAnimator;
 
     </pre>
 </div>

@@ -87,7 +87,7 @@
             },
             "tag": "module",
             "file": "src\\react\\ScrollAnimator.jsx",
-            "line": 13,
+            "line": 14,
             "description": "The react module.\n\nProvides the components for React framework."
         }
     },
@@ -131,7 +131,7 @@
             "module": "React",
             "namespace": "react",
             "file": "src\\react\\ScrollAnimator.jsx",
-            "line": 13,
+            "line": 14,
             "description": "The wrapper component to create an animation on scroll.\n\nThe component passes all attributes to the wrapper div,\nexcept its own props.\n\nUsage:\n```\n     <ScrollAnimator className=\"my-class\" enable=\"true\" effect=\"slide\">\n        ...\n     </ScrollAnimator>\n```\nit creates the next DOM element:\n```\n     <div class=\"my-class\">\n         ...\n     </div>\n```\nthat will apply defined \"slide\" effect if page is scrolled."
         }
     },
@@ -231,7 +231,7 @@
         },
         {
             "file": "src\\react\\ScrollAnimator.jsx",
-            "line": 43,
+            "line": 91,
             "description": "Enable/disable the effect on scroll.",
             "itemtype": "property",
             "name": "enable",
@@ -243,7 +243,7 @@
         },
         {
             "file": "src\\react\\ScrollAnimator.jsx",
-            "line": 51,
+            "line": 99,
             "description": "The base effect name.\nPossible values: \"zoom\", \"slide\" and all witch are defined in `BaseEffects`.",
             "see": [
                 "BaseEffects"
@@ -251,19 +251,27 @@
             "itemtype": "property",
             "name": "effect",
             "type": "string",
-            "default": "\"zoom\"",
+            "default": "'zoom'",
             "class": "react.ScrollAnimator",
             "module": "React",
             "namespace": "react"
         },
         {
             "file": "src\\react\\ScrollAnimator.jsx",
-            "line": 61,
+            "line": 109,
             "description": "The custom effect function instead of the base effect.",
             "itemtype": "property",
             "name": "effectFunc",
             "type": "function(element, value, direction)",
             "default": "null",
+            "class": "react.ScrollAnimator",
+            "module": "React",
+            "namespace": "react"
+        },
+        {
+            "file": "src\\react\\ScrollAnimator.jsx",
+            "line": 117,
+            "description": "The children",
             "class": "react.ScrollAnimator",
             "module": "React",
             "namespace": "react"
@@ -289,6 +297,10 @@
         }
     ],
     "warnings": [
+        {
+            "message": "Missing item type\nThe children",
+            "line": " src\\react\\ScrollAnimator.jsx:117"
+        },
         {
             "message": "Missing item type\nFunction to return webpack.config",
             "line": " webpack.common.js:7"
