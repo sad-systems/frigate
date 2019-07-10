@@ -6,18 +6,18 @@ YUI.add("yuidoc-meta", function(Y) {
         "react.ScrollAnimator"
     ],
     "modules": [
-        "Core",
-        "React"
+        "core",
+        "react"
     ],
     "allModules": [
         {
-            "displayName": "Core",
-            "name": "Core",
+            "displayName": "core",
+            "name": "core",
             "description": "The core module.\n\nProvides the framework independent functions and classes."
         },
         {
-            "displayName": "React",
-            "name": "React",
+            "displayName": "react",
+            "name": "react",
             "description": "The react module.\n\nProvides the components for React framework."
         }
     ],

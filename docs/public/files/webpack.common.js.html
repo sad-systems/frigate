@@ -45,8 +45,8 @@
                 
                 
                             <ul id="api-modules" class="apis modules">
-                                <li><a href="../modules/Core.html">Core</a></li>
-                                <li><a href="../modules/React.html">React</a></li>
+                                <li><a href="../modules/core.html">core</a></li>
+                                <li><a href="../modules/react.html">react</a></li>
                             </ul>
                         </div>
                     </div>
@@ -85,32 +85,26 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 const path               = require(&#x27;path&#x27;);
-const CleanWebpackPlugin = require(&#x27;clean-webpack-plugin&#x27;); // Clears (removes) the given folders
-const CopyWebpackPlugin  = require(&#x27;copy-webpack-plugin&#x27;);  // Copy files to output folder
 const UglifyJsPlugin     = require(&#x27;uglifyjs-webpack-plugin&#x27;);
-// const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;); // Creates default page (index.html)
+// const CleanWebpackPlugin = require(&#x27;clean-webpack-plugin&#x27;); // Clears (removes) the given folders
+// const CopyWebpackPlugin  = require(&#x27;copy-webpack-plugin&#x27;);  // Copy files to output folder
+// const HtmlWebpackPlugin  = require(&#x27;html-webpack-plugin&#x27;);  // Creates default page (index.html)
 
 /**
  * Function to return webpack.config
  *
  * @param {Object} props An object of {
- *                          entryName:   &quot;name-of-the-bundle&quot;,
- *                          entryPoint:  &quot;./src/index.js&quot;,
- *                          indexPage:   &quot;./src/index.html&quot;,
- *                          contentBase: &quot;./dist&quot;, // &lt;--- Build dir will be cleared
+ *                          contentBase: &quot;./dist&quot;, // &lt;--- The build dir
  *                       }
  *
  * @return {Object} webpack.config
  */
 module.exports = (props) =&gt; {
   const {
-    entryName   = &#x27;app&#x27;,
-    entryPoint  = &#x27;./src/index.js&#x27;,
-    indexPage   = null, // &#x27;./src/index.html&#x27;,
     contentBase = &#x27;./dist&#x27;,
-  } = props;
+  } = props || {};
 
-  const plugins = indexPage ? [new CopyWebpackPlugin([{ from: indexPage, to: &#x27;&#x27; }])] : [];
+  // const plugins = indexPage ? [new CopyWebpackPlugin([{ from: indexPage, to: &#x27;&#x27; }])] : [];
 
   return {
     mode: process.env.NODE_ENV === &#x27;production&#x27; ? &#x27;production&#x27; : &#x27;development&#x27;,
@@ -119,22 +113,12 @@ module.exports = (props) =&gt; {
       ? { minimizer: [new UglifyJsPlugin({ /* extractComments: true, */ uglifyOptions: { output: { comments: /^$/ } } })] }
       : {},
 
-    entry: {
-      [entryName]: entryPoint,
-    },
-
     devtool: &#x27;inline-source-map&#x27;,
 
     devServer: {
       contentBase,
       port: 5000,
     },
-
-    plugins: [
-      // new HtmlWebpackPlugin({ title: &#x27;My app&#x27;}),
-      new CleanWebpackPlugin([contentBase]), // &lt;--- @warn: Clears &#x60;contentBase&#x60; folder
-      ...plugins,
-    ],
 
     output: {
       filename: &#x27;[name].js&#x27;,   // myapp1.bundle.js | &#x27;main.js&#x27; | ...

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\react\ScrollAnimator.jsx - Frigate</title>
+    <title>dist\core\scroll\base-effects.js - Frigate</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -45,8 +45,8 @@
                 
                 
                             <ul id="api-modules" class="apis modules">
-                                <li><a href="../modules/Core.html">Core</a></li>
-                                <li><a href="../modules/React.html">React</a></li>
+                                <li><a href="../modules/core.html">core</a></li>
+                                <li><a href="../modules/react.html">react</a></li>
                             </ul>
                         </div>
                     </div>
@@ -80,141 +80,76 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: src\react\ScrollAnimator.jsx</h1>
+<h1 class="file-heading">File: dist\core\scroll\base-effects.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/**
- * The react module.
- *
- * Provides the components for React framework.
- *
- * @module React
- */
-import React from &#x27;react&#x27;;
-import PropTypes from &#x27;prop-types&#x27;;
+&quot;use strict&quot;;
 
-import { getEffect } from &#x27;../core/scroll/base-effects&#x27;;
-import { getElementCenterOffsetAgainstWindowCenter } from &#x27;../core/scroll/core&#x27;;
+Object.defineProperty(exports, &quot;__esModule&quot;, {
+  value: true
+});
+exports.effectSimpleZoom = effectSimpleZoom;
+exports.effectSimpleSlide = effectSimpleSlide;
+exports.getEffect = getEffect;
 
 /**
- * The wrapper component to create an animation on scroll.
+ * Functions provide basic animation effects.
  *
- * The component passes all attributes to the wrapper div,
- * except its own props.
- *
- * Usage:
- * &#x60;&#x60;&#x60;
- *      &lt;ScrollAnimator className=&quot;my-class&quot; enable=&quot;true&quot; effect=&quot;slide&quot;&gt;
- *         ...
- *      &lt;/ScrollAnimator&gt;
- * &#x60;&#x60;&#x60;
- * it creates the next DOM element:
- * &#x60;&#x60;&#x60;
- *      &lt;div class=&quot;my-class&quot;&gt;
- *          ...
- *      &lt;/div&gt;
- * &#x60;&#x60;&#x60;
- * that will apply defined &quot;slide&quot; effect if page is scrolled.
- *
- * @namespace react
- * @class     ScrollAnimator
+ * @namespace core.scroll
+ * @class     BaseEffects
  */
-class ScrollAnimator extends React.Component {
-  constructor(props) {
-    super(props);
-    const {
-      enable,
-      effect,
-      effectFunc,
-      children,
-      ...elementProps
-    } = props;
 
-    this.enable       = enable;
-    this.effectFunc   = effectFunc || getEffect(effect);
-    this.elementProps = elementProps;
-    this.children     = children;
-    this.blockRef     = React.createRef();
-    this.handleScroll = () =&gt; this.onScroll();
-  }
-
-  componentDidMount() {
-    if (!this.enable) return;
-    window.addEventListener(&#x27;scroll&#x27;, this.handleScroll);
-    window.addEventListener(&#x27;resize&#x27;, this.handleScroll);
-    this.handleScroll();
-  }
-
-  componentDidUpdate() {
-    this.handleScroll();
-  }
-
-  componentWillUnmount() {
-    if (!this.enable) return;
-    window.removeEventListener(&#x27;scroll&#x27;, this.handleScroll);
-    window.removeEventListener(&#x27;resize&#x27;, this.handleScroll);
-  }
-
-  onScroll() {
-    const el = this.blockRef.current;
-    if (!this.enable || !el) return;
-
-    const { value, direction } = getElementCenterOffsetAgainstWindowCenter(el);
-    this.effectFunc(el, value, direction);
-  }
-
-  render() {
-    return (
-      &lt;div ref={this.blockRef} {...this.elementProps}&gt;
-        { this.children }
-      &lt;/div&gt;
-    );
+/**
+ * Simple zoom effect
+ *
+ * @method effectSimpleZoom
+ *
+ * @param {Object} element   HTML element
+ * @param {number} value     Value in range [0 - 1]
+ * @param {number} direction Value of the moving direction
+ */
+function effectSimpleZoom(element, value, direction) {
+  if (direction &gt; 0) {
+    var scale = value &lt; 0.9 ? value : 1;
+    element.style.transform = &quot;scale(&quot;.concat(scale, &quot;)&quot;);
   }
 }
+/**
+ * Simple slide effect
+ *
+ * @method effectSimpleSlide
+ *
+ * @param {Object} element   HTML element
+ * @param {number} value     Value in range [0 - 1]
+ * @param {number} direction Value of the moving direction
+ */
 
-ScrollAnimator.propTypes = {
-  /**
-   * Enable/disable the effect on scroll.
-   *
-   * @property enable
-   * @type boolean
-   * @default false
-   */
-  enable: PropTypes.bool,
-  /**
-   * The base effect name.
-   * Possible values: &quot;zoom&quot;, &quot;slide&quot; and all witch are defined in &#x60;BaseEffects&#x60;.
-   * @see BaseEffects
-   *
-   * @property effect
-   * @type string
-   * @default  &#x27;zoom&#x27;
-   */
-  effect: PropTypes.string,
-  /**
-   * The custom effect function instead of the base effect.
-   *
-   * @property  effectFunc
-   * @type function(element, value, direction)
-   * @default null
-   */
-  effectFunc: PropTypes.func,
-  /**
-   * The children
-   */
-  children: PropTypes.node,
-};
 
-ScrollAnimator.defaultProps = {
-  enable:     false,
-  effect:     &#x27;zoom&#x27;,
-  effectFunc: null,
-  children:   null,
-};
+function effectSimpleSlide(element, value, direction) {
+  if (direction &gt; 0) {
+    var y = element.offsetHeight / 2 * (1 - value) * -direction;
+    element.style.transform = &quot;translateY(&quot;.concat(y, &quot;px)&quot;);
+  }
+}
+/**
+ * Effect function factory
+ *
+ * @method getEffect
+ *
+ * @param name Base animation effect name
+ *
+ * @return {effectFunction|effectSimpleZoom} The effect function
+ */
 
-export default ScrollAnimator;
 
+function getEffect(name) {
+  var effects = {
+    zoom: effectSimpleZoom,
+    slide: effectSimpleSlide
+  };
+  return effects[name] || effectSimpleZoom;
+}
     </pre>
 </div>
                     </div>

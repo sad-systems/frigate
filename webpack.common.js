@@ -1,30 +1,24 @@
 const path               = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin'); // Clears (removes) the given folders
-const CopyWebpackPlugin  = require('copy-webpack-plugin');  // Copy files to output folder
 const UglifyJsPlugin     = require('uglifyjs-webpack-plugin');
-// const HtmlWebpackPlugin = require('html-webpack-plugin'); // Creates default page (index.html)
+// const CleanWebpackPlugin = require('clean-webpack-plugin'); // Clears (removes) the given folders
+// const CopyWebpackPlugin  = require('copy-webpack-plugin');  // Copy files to output folder
+// const HtmlWebpackPlugin  = require('html-webpack-plugin');  // Creates default page (index.html)
 
 /**
  * Function to return webpack.config
  *
  * @param {Object} props An object of {
- *                          entryName:   "name-of-the-bundle",
- *                          entryPoint:  "./src/index.js",
- *                          indexPage:   "./src/index.html",
- *                          contentBase: "./dist", // <--- Build dir will be cleared
+ *                          contentBase: "./dist", // <--- The build dir
  *                       }
  *
  * @return {Object} webpack.config
  */
 module.exports = (props) => {
   const {
-    entryName   = 'app',
-    entryPoint  = './src/index.js',
-    indexPage   = null, // './src/index.html',
     contentBase = './dist',
-  } = props;
+  } = props || {};
 
-  const plugins = indexPage ? [new CopyWebpackPlugin([{ from: indexPage, to: '' }])] : [];
+  // const plugins = indexPage ? [new CopyWebpackPlugin([{ from: indexPage, to: '' }])] : [];
 
   return {
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -33,22 +27,12 @@ module.exports = (props) => {
       ? { minimizer: [new UglifyJsPlugin({ /* extractComments: true, */ uglifyOptions: { output: { comments: /^$/ } } })] }
       : {},
 
-    entry: {
-      [entryName]: entryPoint,
-    },
-
     devtool: 'inline-source-map',
 
     devServer: {
       contentBase,
       port: 5000,
     },
-
-    plugins: [
-      // new HtmlWebpackPlugin({ title: 'My app'}),
-      new CleanWebpackPlugin([contentBase]), // <--- @warn: Clears `contentBase` folder
-      ...plugins,
-    ],
 
     output: {
       filename: '[name].js',   // myapp1.bundle.js | 'main.js' | ...

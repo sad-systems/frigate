@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\core\scroll\core.js - Frigate</title>
+    <title>dist\core\scroll\core.js - Frigate</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -80,10 +80,17 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: src\core\scroll\core.js</h1>
+<h1 class="file-heading">File: dist\core\scroll\core.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
+&quot;use strict&quot;;
+
+Object.defineProperty(exports, &quot;__esModule&quot;, {
+  value: true
+});
+exports.getElementCenterOffsetAgainstWindowCenter = void 0;
+
 /**
  * Core functions to create animations on scroll.
  *
@@ -114,26 +121,29 @@
  *             -1 - the element is moving down from center
  * &#x60;&#x60;&#x60;
  */
-export const getElementCenterOffsetAgainstWindowCenter = (element) =&gt; {
-  let value     = 0;
-  let direction = 0;
-
-  // const scrollTop   = window.pageYOffset || document.documentElement.scrollTop;
+var getElementCenterOffsetAgainstWindowCenter = function getElementCenterOffsetAgainstWindowCenter(element) {
+  var value = 0;
+  var direction = 0; // const scrollTop   = window.pageYOffset || document.documentElement.scrollTop;
   // event.target.body.scrollTop; //event.srcElement.body.scrollTop;
   // const elOffsetTop = element.offsetTop;
-  const windowHeight      = document.documentElement.clientHeight;
-  const elHeight          = element.offsetHeight;
-  const elWindowOffsetTop = element.getBoundingClientRect().top;
+
+  var windowHeight = document.documentElement.clientHeight;
+  var elHeight = element.offsetHeight;
+  var elWindowOffsetTop = element.getBoundingClientRect().top;
 
   if (elWindowOffsetTop &lt;= windowHeight &amp;&amp; elWindowOffsetTop &gt;= -elHeight) {
-    const percent = (windowHeight - elWindowOffsetTop) / (windowHeight / 2 + elHeight / 2);
+    var percent = (windowHeight - elWindowOffsetTop) / (windowHeight / 2 + elHeight / 2);
     direction = percent &lt;= 1 ? 1 : -1;
-    value     = percent &lt;= 1 ? percent : 2 - percent;
+    value = percent &lt;= 1 ? percent : 2 - percent;
   }
 
-  return { value, direction };
+  return {
+    value: value,
+    direction: direction
+  };
 };
 
+exports.getElementCenterOffsetAgainstWindowCenter = getElementCenterOffsetAgainstWindowCenter;
     </pre>
 </div>
                     </div>

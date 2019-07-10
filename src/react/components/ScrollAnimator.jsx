@@ -1,15 +1,11 @@
 /**
- * The react module.
- *
- * Provides the components for React framework.
- *
- * @module React
+ * @module react
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getEffect } from '../core/scroll/base-effects';
-import { getElementCenterOffsetAgainstWindowCenter } from '../core/scroll/core';
+import { getEffect } from '@sad-systems/frigate-core/scroll/base-effects';
+import { getElementCenterOffsetAgainstWindowCenter } from '@sad-systems/frigate-core/scroll/core';
 
 /**
  * The wrapper component to create an animation on scroll.

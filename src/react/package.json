@@ -1,0 +1,27 @@
+{
+  "name": "@sad-systems/frigate-react",
+  "version": "0.2.0",
+  "description": "Frontend common components library for React.js by MrDigger",
+  "author": "MrDigger <mrdigger@mail.ru> (http://sad-systems.ru)",
+  "license": "ISC",
+  "keywords": [
+    "react",
+    "scroll",
+    "animation",
+    "effects"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sad-systems/frigate.git",
+    "directory": "src/react"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@sad-systems/frigate-core": ""
+  },
+  "peerDependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  }
+}

@@ -1,13 +1,4 @@
 /**
- * The core module.
- *
- * Provides the framework independent functions and classes.
- *
- * @module Core
- * @main Core
- */
-
-/**
  * Core functions to create animations on scroll.
  *
  * @namespace core.scroll
