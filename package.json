@@ -25,7 +25,6 @@
     "react-dom": "^16.5.2"
   },
   "scripts": {
-    "dev": "webpack",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
     "dist": "babel src -d dist --presets @babel/preset-env,@babel/preset-react --ignore **/node_modules",

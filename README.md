@@ -2,29 +2,37 @@
 
 > Сменить язык: [![Русский](docs/assets/images/ru.gif)](README.ru.md) [![English](docs/assets/images/en.gif)](README.md)
 
-###### Author: MrDigger <mrdigger@mail.ru>
+###### Author: MrDigger <mrdigger@sad-systems.ru>
 ###### © SAD-Systems [http://sad-systems.ru](), 2019
+   
    
 ## Description
 
 Frontend components library.
 
+Currently includes:
+  * core - Provides the framework independent functions and classes.
+  * react - Provides the components for React framework.
+
+## Install
+
+```
+yarn add @sad-systems/frigate-core
+yarn add @sad-systems/frigate-react
+```
+
 ## Usage
 
-```javascript
-
-
-
-````   
+...will be described in the future. 
     
 ## Live demo
 
-Try the [live demo](http://examples.sad-systems.ru/)
+Try the [live demo](http://frigate.examples.sad-systems.ru/)
   
 
 ## Documentation
 
-View [classes description](http://examples.sad-systems.ru/docs/).
+View [classes description](http://frigate.examples.sad-systems.ru/docs/).
  
 
 ## Development
@@ -35,18 +43,15 @@ View [classes description](http://examples.sad-systems.ru/docs/).
   
 ### Build files
 
- Production files are placed under the `/build` folder.
- To see the working project replace all the files from this 
- folder to the web server document root folder. 
+ Production files are placed under the `/dist` folder (automatically generated).
+ 
+### Docs files
+
+  All the docs files are generated under the [/docs/public](./docs/public) folder.
 
 ### Setup
-
 ```
-composer install
-```
-
-```
-yarn install
+yarn
 ```
 
 ### Compiles and hot-reloads for development
@@ -54,9 +59,35 @@ yarn install
 yarn start
 ```
 
-### Compiles and minifies for production
+### Production release
+
+#### Full build to release: 
+
+(test + build + dist + docs):
+```
+yarn prod
+```
+
+#### Separate builds:
+
+Build the bundles:
 ```
 yarn build
+```
+
+Compile packages to distribute via npmjs.com:
+```
+yarn dist
+```
+
+### Docs generation
+```
+yarn docs
+```
+
+### Testing
+```
+yarn test
 ```
 
 ## License
