@@ -95,6 +95,13 @@
             "fors": {},
             "namespaces": {}
         },
+        "copy-version.js": {
+            "name": "copy-version.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "webpack.common.js": {
             "name": "webpack.common.js",
             "modules": {},
@@ -468,6 +475,13 @@
             "namespace": "react"
         },
         {
+            "file": "copy-version.js",
+            "line": 1,
+            "description": "Sync project version for all child packages.\nScript to auto change project version in all package.json files under the `dist` folder.",
+            "class": "",
+            "module": "react"
+        },
+        {
             "file": "webpack.common.js",
             "line": 7,
             "description": "Function to return webpack.config",
@@ -494,6 +508,10 @@
         {
             "message": "Missing item type\nThe children",
             "line": " src\\react\\components\\ScrollAnimator.jsx:113"
+        },
+        {
+            "message": "Missing item type\nSync project version for all child packages.\nScript to auto change project version in all package.json files under the `dist` folder.",
+            "line": " copy-version.js:1"
         },
         {
             "message": "Missing item type\nFunction to return webpack.config",

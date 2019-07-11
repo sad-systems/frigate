@@ -1,6 +1,6 @@
 {
   "name": "@sad-systems/frigate-react",
-  "version": "0.2.0",
+  "version": "auto",
   "description": "Frontend common components library for React.js by MrDigger",
   "author": "MrDigger <mrdigger@mail.ru> (http://sad-systems.ru)",
   "license": "ISC",
@@ -23,5 +23,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
+  },
+  "scripts": {
+    "publish": "npm publish --access public"
   }
 }
