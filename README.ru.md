@@ -68,6 +68,14 @@ yarn start
 yarn prod
 ```
 
+> Примечание:
+> 
+> чтобы изменить версию для выпуска просто используйте
+> ```
+> npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]
+> node copy-version
+> ```
+
 #### Отдельные сборки:
 
 Сборка пакетов:

@@ -68,6 +68,14 @@ yarn start
 yarn prod
 ```
 
+> Note:
+> 
+> to change version for release just use
+> ```
+> npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]
+> node copy-version
+> ```
+
 #### Separate builds:
 
 Build the bundles:
