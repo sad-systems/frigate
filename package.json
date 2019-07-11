@@ -28,8 +28,8 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
     "dist": "babel src -d dist --presets @babel/preset-env,@babel/preset-react --ignore **/node_modules",
-    "docs": "yuidoc .",
-    "prod": "yarn build && yarn dist && yarn docs && node copy-version",
+    "docs": "node copy-version && yuidoc .",
+    "prod": "yarn docs && yarn build && yarn dist && node copy-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

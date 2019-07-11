@@ -2,7 +2,7 @@
     "project": {
         "name": "Frigate",
         "description": "Frontend components library",
-        "version": "0.1.0",
+        "version": "0.2.2",
         "url": "http://sad-systems.ru/",
         "logo": "assets/logo.png",
         "paths": [
@@ -10,42 +10,6 @@
         ]
     },
     "files": {
-        "dist\\core\\scroll\\base-effects.js": {
-            "name": "dist\\core\\scroll\\base-effects.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {
-                "core.scroll": 1
-            }
-        },
-        "dist\\core\\scroll\\core.js": {
-            "name": "dist\\core\\scroll\\core.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {
-                "core.scroll": 1
-            }
-        },
-        "dist\\core\\index.js": {
-            "name": "dist\\core\\index.js",
-            "modules": {
-                "core": 1
-            },
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
-        "dist\\react\\components\\ScrollAnimator.js": {
-            "name": "dist\\react\\components\\ScrollAnimator.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {
-                "react": 1
-            }
-        },
         "src\\core\\scroll\\base-effects.js": {
             "name": "src\\core\\scroll\\base-effects.js",
             "modules": {},
@@ -70,7 +34,9 @@
         },
         "src\\core\\index.js": {
             "name": "src\\core\\index.js",
-            "modules": {},
+            "modules": {
+                "core": 1
+            },
             "classes": {},
             "fors": {},
             "namespaces": {}
@@ -120,10 +86,7 @@
                 "core.scroll.Core": 1
             },
             "fors": {},
-            "namespaces": {
-                "react": 1,
-                "core.scroll": 1
-            },
+            "namespaces": {},
             "tag": "main",
             "file": "src\\core\\scroll\\core.js",
             "line": 1,
@@ -195,144 +158,6 @@
     "elements": {},
     "classitems": [
         {
-            "file": "dist\\core\\scroll\\base-effects.js",
-            "line": 17,
-            "description": "Simple zoom effect",
-            "itemtype": "method",
-            "name": "effectSimpleZoom",
-            "params": [
-                {
-                    "name": "element",
-                    "description": "HTML element",
-                    "type": "Object"
-                },
-                {
-                    "name": "value",
-                    "description": "Value in range [0 - 1]",
-                    "type": "Number"
-                },
-                {
-                    "name": "direction",
-                    "description": "Value of the moving direction",
-                    "type": "Number"
-                }
-            ],
-            "class": "core.scroll.BaseEffects",
-            "namespace": "core.scroll"
-        },
-        {
-            "file": "dist\\core\\scroll\\base-effects.js",
-            "line": 32,
-            "description": "Simple slide effect",
-            "itemtype": "method",
-            "name": "effectSimpleSlide",
-            "params": [
-                {
-                    "name": "element",
-                    "description": "HTML element",
-                    "type": "Object"
-                },
-                {
-                    "name": "value",
-                    "description": "Value in range [0 - 1]",
-                    "type": "Number"
-                },
-                {
-                    "name": "direction",
-                    "description": "Value of the moving direction",
-                    "type": "Number"
-                }
-            ],
-            "class": "core.scroll.BaseEffects",
-            "namespace": "core.scroll"
-        },
-        {
-            "file": "dist\\core\\scroll\\base-effects.js",
-            "line": 49,
-            "description": "Effect function factory",
-            "itemtype": "method",
-            "name": "getEffect",
-            "params": [
-                {
-                    "name": "name",
-                    "description": "Base animation effect name"
-                }
-            ],
-            "return": {
-                "description": "The effect function",
-                "type": "EffectFunction|effectSimpleZoom"
-            },
-            "class": "core.scroll.BaseEffects",
-            "namespace": "core.scroll"
-        },
-        {
-            "file": "dist\\core\\scroll\\core.js",
-            "line": 15,
-            "description": "The function to calculate the element's center current position in the window\nagainst the center of the window\nand returns the offset value (in percentages) and moving direction (up/down).",
-            "itemtype": "method",
-            "name": "getElementCenterOffsetAgainstWindowCenter",
-            "params": [
-                {
-                    "name": "element",
-                    "description": "The DOM element is moving inside the window.",
-                    "type": "DOMElement"
-                }
-            ],
-            "return": {
-                "description": "The object of structure: { value: number, direction: number }\n```\n`value`     The element's center offset from the center of the window (in percentages).\n            = range of: [0 .. 1];\n             1 - the element's center is in the middle of the window\n             0 - the element's center is out of the window (upper or lower)\n\n`direction` The element's moving direction (up/down from the window center)\n            = set of: 0 | 1 | -1\n             0 - the element is out of the window,\n             1 - the element is moving up from center,\n            -1 - the element is moving down from center\n```",
-                "type": "Object"
-            },
-            "class": "core.scroll.Core",
-            "namespace": "core.scroll"
-        },
-        {
-            "file": "dist\\react\\components\\ScrollAnimator.js",
-            "line": 141,
-            "description": "Enable/disable the effect on scroll.",
-            "itemtype": "property",
-            "name": "enable",
-            "type": "boolean",
-            "default": "false",
-            "class": "react.ScrollAnimator",
-            "module": "core",
-            "namespace": "react"
-        },
-        {
-            "file": "dist\\react\\components\\ScrollAnimator.js",
-            "line": 150,
-            "description": "The base effect name.\nPossible values: \"zoom\", \"slide\" and all witch are defined in `BaseEffects`.",
-            "see": [
-                "BaseEffects"
-            ],
-            "itemtype": "property",
-            "name": "effect",
-            "type": "string",
-            "default": "'zoom'",
-            "class": "react.ScrollAnimator",
-            "module": "core",
-            "namespace": "react"
-        },
-        {
-            "file": "dist\\react\\components\\ScrollAnimator.js",
-            "line": 161,
-            "description": "The custom effect function instead of the base effect.",
-            "itemtype": "property",
-            "name": "effectFunc",
-            "type": "function(element, value, direction)",
-            "default": "null",
-            "class": "react.ScrollAnimator",
-            "module": "core",
-            "namespace": "react"
-        },
-        {
-            "file": "dist\\react\\components\\ScrollAnimator.js",
-            "line": 170,
-            "description": "The children",
-            "class": "react.ScrollAnimator",
-            "module": "core",
-            "namespace": "react"
-        },
-        {
             "file": "src\\core\\scroll\\base-effects.js",
             "line": 8,
             "description": "Simple zoom effect",
@@ -356,7 +181,6 @@
                 }
             ],
             "class": "core.scroll.BaseEffects",
-            "module": "core",
             "namespace": "core.scroll"
         },
         {
@@ -383,7 +207,6 @@
                 }
             ],
             "class": "core.scroll.BaseEffects",
-            "module": "core",
             "namespace": "core.scroll"
         },
         {
@@ -403,7 +226,6 @@
                 "type": "EffectFunction|effectSimpleZoom"
             },
             "class": "core.scroll.BaseEffects",
-            "module": "core",
             "namespace": "core.scroll"
         },
         {
@@ -424,7 +246,6 @@
                 "type": "Object"
             },
             "class": "core.scroll.Core",
-            "module": "core",
             "namespace": "core.scroll"
         },
         {
@@ -501,10 +322,6 @@
         }
     ],
     "warnings": [
-        {
-            "message": "Missing item type\nThe children",
-            "line": " dist\\react\\components\\ScrollAnimator.js:170"
-        },
         {
             "message": "Missing item type\nThe children",
             "line": " src\\react\\components\\ScrollAnimator.jsx:113"

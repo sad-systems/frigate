@@ -1,7 +1,7 @@
 {
     "name": "Frigate",
     "description": "Frontend components library",
-    "version": "0.1.0",
+    "version": "0.2.2",
     "url": "http://sad-systems.ru/",
     "logo": "assets/logo.png",
     "paths": ["./src"],

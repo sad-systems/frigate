@@ -8,7 +8,7 @@ const replace           = require('replace-in-file');
 const currentProjectVersion = getProjectVersion({ template: '{{version}}' });
 
 const options = {
-  files: 'dist/**/package.json',
+  files: ['dist/**/package.json', 'yuidoc.json'],
   from: /"version":\s*"[^"]*"/,
   to: `"version": "${currentProjectVersion}"`,
 };
